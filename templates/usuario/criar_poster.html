@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Preloader -->
+<div id="preloader">
+    <i class="circle-preloader"></i>
+    <!-- <img src="{% static 'img/core-img/pizza.png' %}" alt=""> -->
+</div>
+
+<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    
+        {% include 'partials/menu.html' %}
+    
+</nav>
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding-0-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h3>Crie sua Publicação, {{ user.username }} :)</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <p>Todos os campos são obrigatórios</p>
+                <div class="contact-form-area">
+                    <form action="{% url 'criar_poster' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-lg-12">
+                                <label for="nome_publicacao"><b>Título da publicação</b></label>
+                                <input type="text" id="nome_publicacao" class="form-control" name="nome_publicacao"
+                                    placeholder="Ex. Seja hábil e a conquista será inevitavél" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="file"><b>Resumo</b></label>
+                                <textarea class="form-control" name="resumo" cols="30" rows="10"
+                                    placeholder="Ex. Um pequeno Resumo, sobre o assunto" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="file"><b>Publicação</b></label>
+                                <textarea class="form-control" name="publicacao" cols="30" rows="10"
+                                    placeholder="Ex. Escreva todo o conteúdo, desejável" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="file"><b>Citação</b></label>
+                                <textarea class="form-control" name="citacao" cols="30" rows="10"
+                                    placeholder="Ex. Sempre tenha uma referência, de preferência confiável"
+                                    required></textarea>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <label for="file"><b>Foto</b></label>
+                                <input type="file" class="form-control" name="foto_publiacar" required>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn delicious-btn mt-30" type="submit">Publicar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% include 'partials/footer.html' %}
+    </div>
+</div>
+
+
+{% endblock %}

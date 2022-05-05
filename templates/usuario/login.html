@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Preloader -->
+<div id="preloader">
+    <i class="circle-preloader"></i>
+    <img src="" alt="">
+</div>
+<!-- Begin Nav
+================================================== -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {% include 'partials/menu.html' %}
+
+</nav>
+<!-- End Nav
+
+================================================== -->
+<!-- Begin Site Title
+================================================== -->
+<div class="container">
+    <div class="mainheading">
+        <h1 style="text-align: center;">Portal Manaus</h1>
+        <p class="lead">
+
+        </p>
+    </div>
+</div>
+<!-- End Site Title
+
+<!-- ##### Contact Form Area Start ##### -->
+<div style="margin-top: 40px;" class="contact-area section-padding-0-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Login</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-lg-12">
+                                <label for="email"><b>Email</b></label>
+                                <input type="text" id="email" class="form-control" name="email"
+                                    placeholder="Entre com o email cadastrado">
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="senha"><b>Senha</b></label>
+                                <input id="senha" type="password" class="form-control" name="senha"
+                                    placeholder="Digite aqui sua senha">
+                            </div>
+                            <div class="col-12 text-center" style="margin-top: 40px; margin-bottom: 80px;">
+                                <button class="btn btn-success" type="submit">Acessar sua conta</button>
+                                <button type="button" class="btn btn-primary" onclick="exibirCriarConta()">Ainda não tem
+                                    conta? Clique aqui</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% include 'partials/footer.html' %}
+    </div>
+</div>
+
+
+<script>
+    function exibirCriarConta() {
+        location.href = "{% url 'cadastro' %}";
+    } 
+</script>
+
+{% endblock %}
