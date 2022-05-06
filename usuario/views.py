@@ -67,6 +67,9 @@ def criar_poster(request):
         publicacao = request.POST['publicacao']
         citacao = request.POST['citacao']
         foto_publicar = request.FILES['foto_publiacar']
+        twiter_pub = request.POST['twiter_pub']
+        facebook_pub = request.POST['facebook_pub']
+
 
         user = get_object_or_404(User, pk=request.user.id)
         postagem = Postagem.objects.create(
@@ -75,9 +78,23 @@ def criar_poster(request):
             resumo = resumo,
             paragrafo = publicacao,
             citacao = citacao,
-            foto_postagem = foto_publicar
+            foto_postagem = foto_publicar,
+            twiter = twiter_pub,
+            facebook = facebook_pub
+            
         )
         postagem.save()
         return redirect('dashboard')
     else:
         return render(request, 'usuario/criar_poster.html' )
+
+def dashboard(request):
+    Postagem_post = Postagem.objects.all()
+    post_a_exibir = {
+    'poster_use': Postagem_post,
+    }
+    
+    return render(request,'usuario/dashboard.html' , post_a_exibir)
+
+
+

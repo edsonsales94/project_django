@@ -2,6 +2,8 @@ from datetime import date
 import re
 from django.shortcuts import get_object_or_404, render
 from Webapp.models import Postagem
+from django.contrib.auth.models import User
+
 
 # Função que retorna do DB as postagem e ditribui entre destaques e outros
 
@@ -22,8 +24,14 @@ def index(request):
 def post(request, post_id):
 
     abri_post = get_object_or_404(Postagem, pk=post_id)
+    Postagem_post = Postagem.objects.all()
+    poster_autor = User.objects.all() 
+
     post_a_exibir = {
-    'link_post':abri_post
+    'link_post':abri_post,
+    'poster': Postagem_post,
+    'autor':  poster_autor 
+
     }
     
     return render(request,'post.html' , post_a_exibir)
@@ -44,10 +52,13 @@ def buscar(request):
     }
 
     return render(request,'buscar.html',conteudo)  
-    #todo conteudo e renderizado no template
+
+#todo conteudo e renderizado no template
 
 def author(request):
     return render(request,'author.html')
+
+
 
 
   # titulo_featured = {

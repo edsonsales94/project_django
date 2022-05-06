@@ -18,3 +18,5 @@ class Postagem(models.Model):
     publicar = models.BooleanField(default=False)
     foto_postagem = models.ImageField(upload_to='fotos/%d/%m/%Y/', blank=TRUE)
     local_postagem = CharField(max_length=120)
+    twiter = models.CharField(max_length=120)
+    facebook = models.CharField(max_length=120)
